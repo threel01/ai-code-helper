@@ -1,0 +1,30 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /api
+spring:
+  application:
+    name: ai-code-helper
+  profiles:
+    active: local
+  datasource:
+    url: jdbc:mysql://localhost:3306/hospital?useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+  thymeleaf:
+    mode: HTML5
+langchain4j:
+  community:
+    dashscope:
+      chat-model:
+        api-key: sk-1ef851e56cd34fdd973bbe8bdfae5cc9 #千问密钥
+        model-name: qwen-max
+      embedding-model:
+        model-name: text-embedding-v4
+        api-key: sk-1ef851e56cd34fdd973bbe8bdfae5cc9
+      streaming-chat-model:
+        model-name: qwen-max
+        api-key: sk-1ef851e56cd34fdd973bbe8bdfae5cc9
+bigmodel:
+  api-key: c5ac62e456d244938d7d775c48a5afd8.nzO8cV6H9bGfEQDE #智谱mcp密钥
+
