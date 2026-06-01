@@ -8,7 +8,7 @@ spring:
   profiles:
     active: local
   datasource:
-    url: jdbc:mysql://localhost:3306/hospital?useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/hospital?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: root
     password: 123456
   thymeleaf:
@@ -27,4 +27,3 @@ langchain4j:
         api-key: sk-1ef851e56cd34fdd973bbe8bdfae5cc9
 bigmodel:
   api-key: c5ac62e456d244938d7d775c48a5afd8.nzO8cV6H9bGfEQDE #智谱mcp密钥
-

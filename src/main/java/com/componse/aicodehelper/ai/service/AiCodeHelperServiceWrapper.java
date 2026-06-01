@@ -2,13 +2,14 @@ package com.componse.aicodehelper.ai.service;
 
 import com.componse.aicodehelper.ai.AiCodeHelperService;
 import com.componse.aicodehelper.ai.pojo.ChatHistory;
+import com.componse.aicodehelper.ai.repository.ChatHistoryRepository;
 import dev.langchain4j.service.Result;
 import jakarta.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.SignalType;
 
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -21,7 +22,9 @@ public class AiCodeHelperServiceWrapper implements AiCodeHelperService {
     private AiCodeHelperService aiCodeHelperService;
 
     @Resource
-    private ChatHistoryService chatHistoryService;
+    private RedisChatHistoryService redisChatHistoryService;
+    @Autowired
+    private ChatHistoryRepository chatHistoryRepository;
 
     @Override
     public String chat(String userMsg) {
@@ -71,6 +74,7 @@ public class AiCodeHelperServiceWrapper implements AiCodeHelperService {
         chatHistory.setMemoryId(memoryId);
         chatHistory.setUserMessage(userMsg);
         chatHistory.setAiResponse(response);
-        chatHistoryService.save(chatHistory);
+        chatHistoryRepository.save(chatHistory);
+        redisChatHistoryService.saveChatHistory(chatHistory);
     }
 }

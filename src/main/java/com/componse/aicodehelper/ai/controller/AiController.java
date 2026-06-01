@@ -2,6 +2,7 @@ package com.componse.aicodehelper.ai.controller;
 
 import com.componse.aicodehelper.ai.pojo.ChatHistory;
 import com.componse.aicodehelper.ai.service.AiCodeHelperServiceWrapper;
+import com.componse.aicodehelper.ai.service.RedisChatHistoryService;
 import com.componse.aicodehelper.ai.service.ChatHistoryService;
 import jakarta.annotation.Resource;
 import org.springframework.http.codec.ServerSentEvent;
@@ -20,6 +21,9 @@ public class AiController {
     private AiCodeHelperServiceWrapper aiCodeHelperService;
 
     @Resource
+    private RedisChatHistoryService redisChatHistoryService;
+
+    @Resource
     private ChatHistoryService chatHistoryService;
 
     @GetMapping("/chat")
@@ -33,7 +37,7 @@ public class AiController {
 
     @GetMapping("/history/{memoryId}")
     public List<ChatHistory> getChatHistory(@PathVariable int memoryId) {
-        return chatHistoryService.findByMemoryId(memoryId);
+        return redisChatHistoryService.getChatHistoryByMemoryId(memoryId);
     }
 
     @GetMapping("/history")
@@ -43,7 +47,7 @@ public class AiController {
 
     @GetMapping("/history/delete/{memoryId}")
     public String deleteChatHistory(@PathVariable int memoryId) {
-        chatHistoryService.deleteByMemoryId(memoryId);
+        redisChatHistoryService.deleteChatHistoryByMemoryId(memoryId);
         return "删除成功";
     }
 

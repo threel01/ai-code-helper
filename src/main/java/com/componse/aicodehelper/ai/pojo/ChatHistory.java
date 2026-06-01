@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * 聊天历史实体类
@@ -36,7 +37,7 @@ public class ChatHistory {
     /**
      * 创建时间
      */
-    private LocalDateTime createTime;
+    private Date createTime;
 
     /**
      * 会话状态
@@ -45,7 +46,7 @@ public class ChatHistory {
 
     @PrePersist
     protected void onCreate() {
-        createTime = LocalDateTime.now();
+        createTime = new Date();
         status = "completed";
     }
 }

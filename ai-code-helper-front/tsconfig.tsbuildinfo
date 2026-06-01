@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/api.ts","./src/main.tsx","./src/vite-env.d.ts"],"version":"5.6.3"}
+{"root":["./src/app.tsx","./src/api.ts","./src/employeeapi.ts","./src/main.tsx","./src/vite-env.d.ts","./src/features/ai/aichatpage.tsx","./src/features/employee/employeemodal.tsx","./src/features/employee/employeepage.tsx","./src/features/employee/employeestore.ts"],"version":"5.6.3"}
