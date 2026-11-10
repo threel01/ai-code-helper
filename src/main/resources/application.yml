@@ -8,22 +8,22 @@ spring:
   profiles:
     active: local
   datasource:
-    url: jdbc:mysql://localhost:3306/ai-code-helper?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-    username: root
-    password: 12345
+    url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DB}?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
   thymeleaf:
     mode: HTML5
 langchain4j:
   community:
     dashscope:
       chat-model:
-        api-key: sk-1ef851e56cd34fdd973bbe8bdfae5cc9 #千问密钥
-        model-name: qwen-max
+        api-key: ${MODEL_API_KEY} #千问密钥
+        model-name: ${MODEL_NAME}
       embedding-model:
         model-name: text-embedding-v4
-        api-key: sk-1ef851e56cd34fdd973bbe8bdfae5cc9
+        api-key: ${MODEL_API_KEY}
       streaming-chat-model:
-        model-name: qwen-max
-        api-key: sk-1ef851e56cd34fdd973bbe8bdfae5cc9
+        model-name: ${MODEL_NAME}
+        api-key: ${MODEL_API_KEY}
 bigmodel:
-  api-key: c5ac62e456d244938d7d775c48a5afd8.nzO8cV6H9bGfEQDE #智谱mcp密钥
+  api-key: ${BIGMODEL_API_KEY} #智谱mcp密钥
